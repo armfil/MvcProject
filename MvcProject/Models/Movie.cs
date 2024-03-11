@@ -15,7 +15,6 @@ public class Movie
 
     [Display(Name = "Дата просмотра")]
     [Required(ErrorMessage = "Дата введена неверно или отсутствует")]
-    [DataType(DataType.Date)]
     public DateTime ReleaseDate { get; set; }
 
     [Display(Name = "Жанр")]

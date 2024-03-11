@@ -1,12 +1,13 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using MvcMovie.Models;
 using MvcProject.Data;
-using MvcProject.Models;
-var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddDbContext<MvcProjectContext>(options => // онтекст базы данных регистрируетс€ с помощью контейнера внедрени€ зависимостей
-    options.UseSqlServer(builder.Configuration.GetConnectionString("MvcProjectContext") ?? throw new InvalidOperationException("Connection string 'MvcProjectContext' not found.")));
 
+var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<MvcProjectContext>(
+    options =>
+        options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection") ??
+                          throw new InvalidOperationException("Connection string 'DefaultConnection' not found.")));
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
@@ -18,6 +19,7 @@ using (var scope = app.Services.CreateScope())
 
     SeedData.Initialize(services);
 }
+
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {

@@ -12,7 +12,7 @@ namespace MvcProject.Data
         public MvcProjectContext(DbContextOptions<MvcProjectContext> options)
             : base(options)
         {
-            Database.EnsureDeleted();
+            // Database.EnsureDeleted();
             Database.EnsureCreated();
         }
        

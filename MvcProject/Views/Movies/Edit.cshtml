@@ -1,57 +1,101 @@
 ﻿@model MvcMovie.Models.Movie
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Добавить фильм";
+    Layout = "_WrapperLayout";
 }
 
-<h1>Отредактируйте фильм</h1>
 
-<h4>исправьте недочёты</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="Title" class="control-label"></label>
-                <input asp-for="Title" class="form-control" />
-                <span asp-validation-for="Title" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ReleaseDate" class="control-label"></label>
-                <input asp-for="ReleaseDate" class="form-control" />
-                <span asp-validation-for="ReleaseDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Genre" class="control-label"></label>
-                <input asp-for="Genre" class="form-control" />
-                <span asp-validation-for="Genre" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Price" class="control-label"></label>
-                <input asp-for="Price" class="form-control" />
-                <span asp-validation-for="Price" class="text-danger"></span>
-                <div class="form-group">
-                    <label asp-for="Rating" class="control-label"></label>
-                    <input asp-for="Rating" class="form-control" />
-                    <span asp-validation-for="Rating" class="text-danger"></span>
+<nav class="text-sm sm:text-base p-4 md:p-6 lg:p-6 rounded-md">
+    <ol class="list-none p-0 inline-flex space-x-2">
+        <li class="flex items-center">
+            <a asp-action="Index" asp-controller="Home">
+                <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512"
+                     class="cursor-pointer hover:fill-blue-500 transition-colors duration-300" fill="#4b5563">
+                    <path
+                        d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40H456c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1H416 392c-22.1 0-40-17.9-40-40V448 384c0-17.7-14.3-32-32-32H256c-17.7 0-32 14.3-32 32v64 24c0 22.1-17.9 40-40 40H160 128.1c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2H104c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9 .1-2.8V287.6H32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z"/>
+                </svg>
+            </a>
+            <span class="mx-2">/</span>
+        </li>
+        <li class="flex items-center">
+            <a asp-action="Index">
+                Список фильмов
+            </a>
+            <span class="mx-2">/</span>
+        </li>
+        <li class="flex items-center">
+            <span class="text-gray-800">Изменить @Model.Title</span>
+        </li>
+    </ol>
+</nav>
+
+<form asp-action="Edit">
+    <input type="hidden" asp-for="Id"/>
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="space-y-12">
+        <div class="border-b border-gray-900/10 pb-12">
+            <h2 class="text-base font-semibold leading-7 text-gray-900">Изменить фильм "@Model.Title"</h2>
+            <p class="mt-1 text-sm leading-6 text-gray-600">редактируйте информацию</p>
+            <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+                <div class="sm:col-span-3">
+                    <div class="flex gap-3">
+                        <label asp-for="Title" class="block text-sm font-medium leading-6 text-gray-900">Название</label>
+                        <span asp-validation-for="Title" class="block text-sm leading-6 text-red-500"></span>
+                    </div>
+                    <div class="mt-2">
+                        <input type="text" asp-for="Title" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    </div>
+                </div>
+                <div class="sm:col-span-3">
+                    <div class="flex gap-3">
+                        <label asp-for="Genre" class="block text-sm font-medium leading-6 text-gray-900">Жанр</label>
+                        <span asp-validation-for="Genre" class="block text-sm leading-6 text-red-500"></span>
+                    </div>
+                    <div class="mt-2">
+                        <input type="text" asp-for="Genre" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    </div>
+                </div>
+                <div class="sm:col-span-3">
+                    <div class="flex gap-3">
+                        <label asp-for="ReleaseDate" class="block text-sm font-medium leading-6 text-gray-900">Дата выхода</label>
+                        <span asp-validation-for="ReleaseDate" class="block text-sm leading-6 text-red-500"></span>
+                    </div>
+                    <div class="mt-2">
+                        <input type="date" asp-for="ReleaseDate" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    </div>
+                </div>
+                <div class="sm:col-span-3">
+                    <div class="flex gap-3">
+                        <label asp-for="Price" class="block text-sm font-medium leading-6 text-gray-900">Цена</label>
+                        <span asp-validation-for="Price" class="block text-sm leading-6 text-red-500"></span>
+                    </div>
+                    <div class="mt-2">
+                        <input type="text" asp-for="Price" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    </div>
+                </div>
+
+                <div class="sm:col-span-3">
+                    <div class="flex gap-3">
+                        <label asp-for="Rating" class="block text-sm font-medium leading-6 text-gray-900">Рейтинг</label>
+                        <span asp-validation-for="Rating" class="block text-sm leading-6 text-red-500"></span>
+                    </div>
+                    <div class="mt-2">
+                        <input type="text" asp-for="Rating" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    </div>
                 </div>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Сохранить изменения" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
     </div>
-</div>
 
-<div>
-    <a asp-action="Index">Вернуться к списку фильмов</a>
-</div>
+    <div class="mt-6 flex items-center justify-end gap-x-6">
+        <a class="text-sm font-semibold leading-6 text-gray-900" asp-action="Index">Вернуться к списку фильмов</a>
+        <button type="submit" class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+            Добавить
+        </button>
+    </div>
+</form>
 
 @section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
 }
-

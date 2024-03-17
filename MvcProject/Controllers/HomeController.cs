@@ -13,17 +13,25 @@ namespace MvcProject.Controllers
             _logger = logger;
         }
 
+        [HttpGet, Route("/")]
         public IActionResult Index()
         {
             return View();
         }
 
+        [HttpGet, Route("/privacy")]
         public IActionResult Privacy()
         {
             return View();
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        [HttpGet, Route("/about")]
+        public IActionResult About()
+        {
+            return View();
+        }
+        
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true), HttpGet]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });

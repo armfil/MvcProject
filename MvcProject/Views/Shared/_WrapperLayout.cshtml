@@ -1,0 +1,11 @@
+
+@{
+    Layout = "_Layout";
+}
+
+
+<div class="p-5">
+    @RenderBody()
+</div>
+
+@await RenderSectionAsync("Scripts", required: false)

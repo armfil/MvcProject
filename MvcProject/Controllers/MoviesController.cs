@@ -21,6 +21,7 @@ namespace MvcProject.Controllers
         }
 
         // GET: Movies
+        [HttpGet, Route("/movies")]
         public async Task<IActionResult> Index(string movieGenre, string searchString)
         {
             if (_context.Movie == null)
@@ -30,10 +31,10 @@ namespace MvcProject.Controllers
 
             // Use LINQ to get list of genres.
             IQueryable<string> genreQuery = from m in _context.Movie
-                                            orderby m.Genre
-                                            select m.Genre;
+                orderby m.Genre
+                select m.Genre;
             var movies = from m in _context.Movie
-                         select m;
+                select m;
 
             if (!string.IsNullOrEmpty(searchString))
             {
@@ -55,13 +56,9 @@ namespace MvcProject.Controllers
         }
 
         // GET: Movies/Details/5
-        public async Task<IActionResult> Details(int? id)
+        [HttpGet, Route("/movies/{id}")]
+        public async Task<IActionResult> Details(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
             var movie = await _context.Movie
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (movie == null)
@@ -72,7 +69,7 @@ namespace MvcProject.Controllers
             return View(movie);
         }
 
-        // GET: Movies/Create
+        [HttpGet, Route("/movies/create")]
         public IActionResult Create()
         {
             return View();
@@ -81,7 +78,7 @@ namespace MvcProject.Controllers
         // POST: Movies/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        [HttpPost, Route("/movies/create")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Title,ReleaseDate,Genre,Price,Rating")] Movie movie)
         {
@@ -91,6 +88,7 @@ namespace MvcProject.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+
             return View(movie);
         }
 
@@ -107,6 +105,7 @@ namespace MvcProject.Controllers
             {
                 return NotFound();
             }
+
             return View(movie);
         }
 
@@ -140,8 +139,10 @@ namespace MvcProject.Controllers
                         throw;
                     }
                 }
+
                 return RedirectToAction(nameof(Index));
             }
+
             return View(movie);
         }
 
@@ -165,7 +166,7 @@ namespace MvcProject.Controllers
 
         // POST: Movies/Delete/5
         [HttpPost, ActionName("Delete")] //атрибут выполняет сопоставление для системы маршрутизации, чтобы URL-адрес,
-                                         //включающий /Delete/ для запроса POST, смог найти метод DeleteConfirmed
+        //включающий /Delete/ для запроса POST, смог найти метод DeleteConfirmed
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {

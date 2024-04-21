@@ -21,6 +21,20 @@
     <_ContentIncludedByDefault Remove="wwwroot\lib\jquery\dist\jquery.min.js" />
     <_ContentIncludedByDefault Remove="wwwroot\lib\jquery\dist\jquery.min.map" />
     <_ContentIncludedByDefault Remove="wwwroot\lib\jquery\LICENSE.txt" />
+    <_ContentIncludedByDefault Remove="wwwroot\html\about-us.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\html\article.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\html\articles.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\html\contact-us.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\html\index.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\html\sitemap.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\css\output.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\css\tailwind.min.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\static\html\about-us.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\static\html\article.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\static\html\articles.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\static\html\contact-us.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\static\html\index.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\static\html\sitemap.html" />
   </ItemGroup>
 
 </Project>
